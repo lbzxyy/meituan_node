@@ -26,7 +26,7 @@ module.exports = {
   css: [
     'element-ui/lib/theme-chalk/index.css',
     'element-ui/lib/theme-chalk/reset.css',
-    // '~assets/css/main.css'
+    '~assets/css/main.css'
   ],
   /*
    ** Plugins to load before mounting the App
@@ -35,7 +35,7 @@ module.exports = {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/eslint-module'],
+  modules: [],
   /*
    ** Build configuration
    */

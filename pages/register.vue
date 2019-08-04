@@ -76,7 +76,7 @@
 </template>
 
 <script>
-// import CryptoJS from 'crypto-js'
+import CryptoJS from 'crypto-js'
         export default {
           data() {
             return {
@@ -128,6 +128,7 @@
           },
           layout: 'blank',
           methods: {
+            // 发送验证码
             sendMsg: function () {
               const self = this;
               let namePass
@@ -168,15 +169,16 @@
                 })
               }
             },
+            // 注册
             register: function () {
               let self = this;
               this.$refs['ruleForm'].validate((valid) => {
                 if (valid) {
                   self.$axios.post('/users/signup', {
-                    // username: window.encodeURIComponent(self.ruleForm.name),
-                    // password: CryptoJS.MD5(self.ruleForm.pwd).toString(),
-                    // email: self.ruleForm.email,
-                    // code: self.ruleForm.code
+                    username: window.encodeURIComponent(self.ruleForm.name),
+                    password: CryptoJS.MD5(self.ruleForm.pwd).toString(),
+                    email: self.ruleForm.email,
+                    code: self.ruleForm.code
                   }).then(({
                     status,
                     data

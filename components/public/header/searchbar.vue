@@ -106,8 +106,9 @@ export default {
       },200)
     },
     input() {
+      const sign = 'c0159e56b92b0f7e191b2228d917afc9'
       console.log('====================================');
-      console.log(input);
+      console.log('input');
       console.log('====================================');
     }
   },

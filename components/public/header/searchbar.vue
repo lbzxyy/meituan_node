@@ -25,11 +25,9 @@
             <dd>火锅</dd>
           </dl>
           <dl v-if="isSearchList" class="searchList">
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
+            <dd v-for="(item,idx) in searchList" :key="idx">
+              <a href="">{{item.name}}</a>
+            </dd>
           </dl>
         </div>
         <p class="suggest">
@@ -78,6 +76,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 export default {
   data() {
     return {
@@ -105,12 +104,18 @@ export default {
         self.isFocus=false
       },200)
     },
-    input() {
-      const sign = 'c0159e56b92b0f7e191b2228d917afc9'
-      console.log('====================================');
-      console.log('input');
-      console.log('====================================');
-    }
+    input:_.debounce(async function(){
+      let self = this;
+      let city = self.$store.state.geo.position.city.replace('市','')
+      self.searchList = []
+      let {status,data:{top}} = await self.$axios.get('/search/top',{
+        params: {
+          city,
+          input: self.search
+        }
+      })
+      self.searchList = top.slice(0,10)
+    },300)
   },
 }
 </script>

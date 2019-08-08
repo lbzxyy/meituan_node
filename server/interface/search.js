@@ -20,4 +20,18 @@ router.get('/top',async(ctx) => {
   }
 })
 
+// 获取热门
+router.get('/hotPlace', async(ctx) => {
+  let city = ctx.store?ctx.store.geo.position.city:ctx.query.city
+  let {status, data: {result}} = await axios.get(`http://cp-tools.cn/search/hotPlace`,{
+    params: {
+      city,
+      sign
+    }
+  })
+  ctx.body = {
+    result: status===200?result:[]
+  }
+})
+
 export default router

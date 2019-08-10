@@ -87,7 +87,7 @@ export default {
       }
     },200),
     handleSelect:function(item){
-      console.log(item.value);
+      this.$router.push('/')
     }
   }
 }
